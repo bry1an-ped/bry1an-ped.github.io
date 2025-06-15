@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>&lt;model-viewer&gt; template</title>
+    <meta charset="utf-8">
+    <meta name="description" content="&lt;model-viewer&gt; template">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link type="text/css" href="./styles.css" rel="stylesheet"/>
+  </head>
+  <body>
+    <!-- <model-viewer> HTML element -->
+    <model-viewer id="PEXIT" src="dve 4, animated final .glb" ar ar-modes="webxr scene-viewer quick-look" camera-controls tone-mapping="neutral" poster="poster.webp" shadow-intensity="1">
+      <button class="Hotspot" slot="hotspot-1" data-surface="159 0 1138 1337 1139 0.489 0.507 0.004" data-visibility-attribute="visible">
+          <div class="HotspotAnnotation">Handle</div>
+      </button><button class="Hotspot" slot="hotspot-2" data-surface="159 0 305 317 428 0.153 0.766 0.082" data-visibility-attribute="visible">
+          <div class="HotspotAnnotation">Acylic Frame</div>
+      </button><button class="Hotspot" slot="hotspot-3" data-surface="159 0 276 280 278 0.269 0.046 0.685" data-visibility-attribute="visible">
+          <div class="HotspotAnnotation">Token Holder</div>
+      </button><button class="Hotspot" slot="hotspot-4" data-surface="159 0 281 260 237 0.245 0.751 0.005" data-visibility-attribute="visible">
+          <div class="HotspotAnnotation">Tong</div>
+      </button><button class="Hotspot" slot="hotspot-5" data-surface="159 0 240 239 241 0.168 0.653 0.179" data-visibility-attribute="visible">
+          <div class="HotspotAnnotation">Key</div>
+      </button><button class="Hotspot" slot="hotspot-6" data-surface="159 0 353 356 354 0.241 0.227 0.532" data-visibility-attribute="visible">
+          <div class="HotspotAnnotation">Chopsticks</div>
+      </button><button class="Hotspot" slot="hotspot-7" data-surface="5 0 15711 15712 15713 0.044 0.892 0.064" data-visibility-attribute="visible">
+          <div class="HotspotAnnotation">Stand</div>
+      </button><button class="Hotspot" slot="hotspot-9" data-surface="159 0 565 581 216 0.054 0.174 0.772" data-visibility-attribute="visible">
+          <div class="HotspotAnnotation">Pex Board</div>
+      </button>
+      <div class="progress-bar hide" slot="progress-bar">
+          <div class="update-bar"></div>
+      </div>
+      <button slot="ar-button" id="ar-button">
+          View in your space
+      </button>
+      <div id="ar-prompt">
+          <img src="ar_hand_prompt.png">
+      </div>
+
+    </model-viewer> 
+
+<div style="position: relative; width: 90px; height: 420px; border: 1px solid #ccc; padding: 20px; font-family: sans-serif;">
+  <!-- Model Movement Dropdown -->
+  <label for="modelSelect"><strong>Model Movement:</strong></label>
+  <select id="modelSelect" onchange="handleModelChange(this.value)">
+    <option value="">-- Select Action --</option>
+    <option value="toolsmoving">Tools</option>
+    <option value="exploded view">Exploded View</option>
+  </select>
+
+  <!-- Part Movement Dropdown -->
+  <label for="partSelect"><strong>Part Movement:</strong></label>
+  <select id="partSelect" onchange="handlePartChange(this.value)">
+    <option value="">-- Select Part --</option>
+    <option value="acrylic">Open Frame</option>
+    <option value="handleAction">Handle</option>
+  </select>
+
+  <!-- Material Dropdown -->
+  <label for="materialSelect"><strong>Material:</strong></label>
+  <select id="materialSelect" onchange="handleMaterialChange(this.value)">
+    <option value="">-- Select Material --</option>
+    <option value="v1">Light</option>
+    <option value="v2">Hot</option>
+    <option value="v3">Shiny</option>
+    <option value="v4">Regular</option>
+  </select>
+
+  <!-- Pause Button -->
+  <button onclick="pauseMe()" class="pause-button">Pause</button>
+</div>
+
+<!-- 🎨 STYLE SECTION -->
+<style>
+  /* Model Movement Style */
+  #modelSelect {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 14px;
+    border: 2px solid #ffaa00;
+    border-radius: 8px;
+    background-color: #fffbe6;
+    color: #333;
+    font-size: 14px;
+  }
+
+  /* Part Movement Style */
+  #partSelect {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 14px;
+    border: 2px solid #1702ff;
+    border-radius: 8px;
+    background-color: #e6f7ff;
+    color: #004d66;
+    font-size: 14px;
+  }
+
+  /* Material Style */
+  #materialSelect {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 14px;
+    border: 2px solid #cc66ff;
+    border-radius: 8px;
+    background-color: #f7e6ff;
+    color: #797979;
+    font-size: 14px;
+  }
+
+  /* Pause Button Style */
+  .pause-button {
+    background-color: rgb(253, 150, 150);
+    color: black;
+    padding: 8px 14px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+  }
+
+  .pause-button:hover {
+    background-color: rgb(240, 120, 120);
+  }
+</style>
+
+<!-- 🔧 FUNCTION SCRIPT -->
+<script>
+  function playMe(action) {
+    console.log("Play:", action);
+    // Replace with real playback logic
+  }
+
+  function handleModelChange(value) {
+    if (value) playMe(value);
+  }
+
+  function handlePartChange(value) {
+    if (value) playMe(value);
+  }
+
+  function handleMaterialChange(value) {
+    if (value === 'v1') v1();
+    else if (value === 'v2') v2();
+    else if (value === 'v3') v3();
+    else if (value === 'v4') v4();
+  }
+
+  function pauseMe() {
+    console.log("Paused");
+    // Replace with pause logic
+  }
+
+  function v1() {
+    document.getElementById('PEXIT').variantName = "V1";
+  }
+
+  function v2() {
+    document.getElementById('PEXIT').variantName = "V2";
+  }
+
+  function v3() {
+    document.getElementById('PEXIT').variantName = "V3";
+  }
+
+  function v4() {
+    document.getElementById('PEXIT').variantName = "V4";
+  }
+</script>
+
+
+</div>
+
+   <script>
+function playMe(animationName) {
+  const PEXIT = document.getElementById('PEXIT');
+  PEXIT.pause();
+  PEXIT.setAttribute('animation-name', animationName);
+  document.getElementById('PEXIT').play({pingpong:true});
+}
+
+ function pauseMe() {
+    const PEXIT = document.getElementById('PEXIT');
+    if (PEXIT) {
+      PEXIT.pause();
+    } else {
+      console.error('PEXIT not found');
+    }
+}
+ 
+    function v1() {
+      document.getElementById('PEXIT').variantName="VER1"
+    }
+    function v2() {
+      document.getElementById('PEXIT').variantName="VER2"
+    }
+    function v3() {
+      document.getElementById('PEXIT').variantName="VER3"
+    }
+    function v4() {
+      document.getElementById('PEXIT').variantName="VER4"
+    }
+
+</script>
+
+    <script>
+  function setOrbit(orbit) {
+    document.getElementById('PEXIT').cameraOrbit = orbit; }
+  
+</script>
+    </model-viewer> 
+    <script>
+  document.querySelectorAll('.Hotspot').forEach(button => {
+    const annotation = button.querySelector('.HotspotAnnotation');
+    if (annotation) {
+      annotation.style.display = 'none'; // hide initially
+
+      button.addEventListener('mouseenter', () => {
+        annotation.style.display = 'block';
+      });
+
+      button.addEventListener('mouseleave', () => {
+        annotation.style.display = 'none';
+      });
+    }
+  }); 
+
+
+  </script>
+
+    <script src="script.js"></script>
+    <!-- Loads <model-viewer> for browsers: -->
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
+  </body>
+</html>
